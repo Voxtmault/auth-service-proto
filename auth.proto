@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option go_package = ".";
+
+package auth;
+
+service AuthService {
+    rpc BasicLogin(BasicLoginRequest) returns (BasicLoginResponse) {}
+    rpc VerifyJWT(VerifyJWTRequest) returns (VerifyJWTResponse) {}
+    rpc VerifyAPIKey(VerifyAPIKeyRequest) returns (VerifyAPIKeyResponse){}
+    rpc GetPersonnelData(GetPersonnelDataRequest) returns (GetPersonnelDataResponse){}
+}
+
+message BasicLoginRequest {
+  string username = 1;
+  string password = 2;
+  string loginAs = 3; //Table name
+}
+message BasicLoginResponse {
+  uint32 response = 1;
+  string message = 2;
+  string jwt = 3;
+  uint64 idUser = 4;
+  string loggedInAs = 5;
+}
+
+message VerifyJWTRequest {
+  string token = 1;
+}
+message VerifyJWTResponse {
+  uint32 response = 1;
+  string message = 2;
+  string jsonData = 3;
+}
+
+message VerifyAPIKeyRequest {
+  string apiToken = 1; // Base64 Encoded
+}
+message VerifyAPIKeyResponse {
+  uint32 response = 1;
+  string message = 2;
+  string apiName = 3;
+}
+
+message GetPersonnelDataRequest {
+  string token = 1;
+  string apiToken = 2;
+}
+message GetPersonnelDataResponse {
+  uint32 response = 1;
+  string message = 2;
+  string jsonData = 3;
+}
