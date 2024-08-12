@@ -20,7 +20,7 @@ message APIServiceGenericResponse {
 message API {
   uint32 apiId = 1; 
   string apiName = 2;
-  string createdAt = 3;
+  bool isBlocked = 3;
 }
 
 message RegisterAuthorizedAPIRequest {

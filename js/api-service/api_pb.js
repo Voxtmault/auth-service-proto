@@ -413,7 +413,7 @@ proto.auth.API.toObject = function(includeInstance, msg) {
   var f, obj = {
     apiid: jspb.Message.getFieldWithDefault(msg, 1, 0),
     apiname: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    createdat: jspb.Message.getFieldWithDefault(msg, 3, "")
+    isblocked: jspb.Message.getBooleanFieldWithDefault(msg, 3, false)
   };
 
   if (includeInstance) {
@@ -459,8 +459,8 @@ proto.auth.API.deserializeBinaryFromReader = function(msg, reader) {
       msg.setApiname(value);
       break;
     case 3:
-      var value = /** @type {string} */ (reader.readString());
-      msg.setCreatedat(value);
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsblocked(value);
       break;
     default:
       reader.skipField();
@@ -505,9 +505,9 @@ proto.auth.API.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCreatedat();
-  if (f.length > 0) {
-    writer.writeString(
+  f = message.getIsblocked();
+  if (f) {
+    writer.writeBool(
       3,
       f
     );
@@ -552,20 +552,20 @@ proto.auth.API.prototype.setApiname = function(value) {
 
 
 /**
- * optional string createdAt = 3;
- * @return {string}
+ * optional bool isBlocked = 3;
+ * @return {boolean}
  */
-proto.auth.API.prototype.getCreatedat = function() {
-  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
+proto.auth.API.prototype.getIsblocked = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 3, false));
 };
 
 
 /**
- * @param {string} value
+ * @param {boolean} value
  * @return {!proto.auth.API} returns this
  */
-proto.auth.API.prototype.setCreatedat = function(value) {
-  return jspb.Message.setProto3StringField(this, 3, value);
+proto.auth.API.prototype.setIsblocked = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 3, value);
 };
 
 
