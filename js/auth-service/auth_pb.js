@@ -1519,7 +1519,9 @@ proto.auth.PersonnelData.toObject = function(includeInstance, msg) {
     idfrontlinertype: jspb.Message.getFieldWithDefault(msg, 4, 0),
     frontlinertype: jspb.Message.getFieldWithDefault(msg, 5, ""),
     idstakeholder: jspb.Message.getFieldWithDefault(msg, 6, 0),
-    name: jspb.Message.getFieldWithDefault(msg, 7, "")
+    name: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    accountid: jspb.Message.getFieldWithDefault(msg, 8, 0),
+    sourcetable: jspb.Message.getFieldWithDefault(msg, 9, "")
   };
 
   if (includeInstance) {
@@ -1583,6 +1585,14 @@ proto.auth.PersonnelData.deserializeBinaryFromReader = function(msg, reader) {
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setName(value);
+      break;
+    case 8:
+      var value = /** @type {number} */ (reader.readUint32());
+      msg.setAccountid(value);
+      break;
+    case 9:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setSourcetable(value);
       break;
     default:
       reader.skipField();
@@ -1659,6 +1669,20 @@ proto.auth.PersonnelData.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getAccountid();
+  if (f !== 0) {
+    writer.writeUint32(
+      8,
+      f
+    );
+  }
+  f = message.getSourcetable();
+  if (f.length > 0) {
+    writer.writeString(
+      9,
       f
     );
   }
@@ -1788,6 +1812,42 @@ proto.auth.PersonnelData.prototype.getName = function() {
  */
 proto.auth.PersonnelData.prototype.setName = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional uint32 accountId = 8;
+ * @return {number}
+ */
+proto.auth.PersonnelData.prototype.getAccountid = function() {
+  return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 8, 0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.auth.PersonnelData} returns this
+ */
+proto.auth.PersonnelData.prototype.setAccountid = function(value) {
+  return jspb.Message.setProto3IntField(this, 8, value);
+};
+
+
+/**
+ * optional string sourceTable = 9;
+ * @return {string}
+ */
+proto.auth.PersonnelData.prototype.getSourcetable = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 9, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.auth.PersonnelData} returns this
+ */
+proto.auth.PersonnelData.prototype.setSourcetable = function(value) {
+  return jspb.Message.setProto3StringField(this, 9, value);
 };
 
 

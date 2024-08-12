@@ -55,6 +55,8 @@ message PersonnelData {
   string frontlinerType = 5;
   uint32 idStakeholder = 6;
   string name = 7;
+  uint32 accountId = 8;
+  string sourceTable = 9;
 }
 
 message GetPersonnelDataRequest {
