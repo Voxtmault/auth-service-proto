@@ -47,6 +47,16 @@ message VerifyAPIKeyResponse {
   string apiName = 3;
 }
 
+message PersonnelData {
+  uint32 idZone = 1;
+  uint32 idFleet = 2;
+  uint32 idKorlap = 3;
+  uint32 idFrontlinerType = 4;
+  string frontlinerType = 5;
+  uint32 idStakeholder = 6;
+  string name = 7;
+}
+
 message GetPersonnelDataRequest {
   string token = 1;
   string apiToken = 2;
@@ -54,44 +64,5 @@ message GetPersonnelDataRequest {
 message GetPersonnelDataResponse {
   uint32 response = 1;
   string message = 2;
-  string jsonData = 3;
-}
-
-// API Sub-Services
-message API {
-  uint32 apiId = 1; 
-  string apiName = 2;
-  string createdAt = 3;
-}
-
-message RegisterAuthorizedAPIRequest {
-  string apiName = 1;
-}
-message RegisterAuthorizedAPIResponse {
-  uint32 response = 1;
-  string message = 2;
-  string apiToken = 3; // Base64 Encoded (Use as is)
-}
-
-message RollingAPIKeyRequest {
-  string apiToken = 1; // Base64 Encoded
-}
-message RollingAPIKeyResponse {
-  uint32 response = 1;
-  string message = 2;
-  string apiToken = 3; // Base64 Encoded (Use as is)
-}
-
-message DisableAPIRequest {
-  string apiKey = 1;
-  uint32 apiId = 2;
-}
-// DisableAPIRequest uses GenericResponse
-
-message GetRegisteredAPIRequest {
-  string token = 1;
-}
-message GetRegisteredAPIResponse {
-  uint32 response = 1;
-  repeated API api = 2;
+  PersonnelData data = 3;
 }
