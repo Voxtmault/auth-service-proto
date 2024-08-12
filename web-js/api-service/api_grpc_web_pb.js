@@ -200,13 +200,13 @@ proto.auth.APIServicePromiseClient.prototype.rollingAPIKey =
  * @const
  * @type {!grpc.web.MethodDescriptor<
  *   !proto.auth.DisableAPIRequest,
- *   !proto.auth.GenericResponse>}
+ *   !proto.auth.APIServiceGenericResponse>}
  */
 const methodDescriptor_APIService_DisableAPI = new grpc.web.MethodDescriptor(
   '/auth.APIService/DisableAPI',
   grpc.web.MethodType.UNARY,
   proto.auth.DisableAPIRequest,
-  proto.auth.GenericResponse,
+  proto.auth.APIServiceGenericResponse,
   /**
    * @param {!proto.auth.DisableAPIRequest} request
    * @return {!Uint8Array}
@@ -214,7 +214,7 @@ const methodDescriptor_APIService_DisableAPI = new grpc.web.MethodDescriptor(
   function(request) {
     return request.serializeBinary();
   },
-  proto.auth.GenericResponse.deserializeBinary
+  proto.auth.APIServiceGenericResponse.deserializeBinary
 );
 
 
@@ -223,9 +223,9 @@ const methodDescriptor_APIService_DisableAPI = new grpc.web.MethodDescriptor(
  *     request proto
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.auth.GenericResponse)}
+ * @param {function(?grpc.web.RpcError, ?proto.auth.APIServiceGenericResponse)}
  *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.auth.GenericResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.auth.APIServiceGenericResponse>|undefined}
  *     The XHR Node Readable Stream
  */
 proto.auth.APIServiceClient.prototype.disableAPI =
@@ -244,7 +244,7 @@ proto.auth.APIServiceClient.prototype.disableAPI =
  *     request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.auth.GenericResponse>}
+ * @return {!Promise<!proto.auth.APIServiceGenericResponse>}
  *     Promise that resolves to the response
  */
 proto.auth.APIServicePromiseClient.prototype.disableAPI =

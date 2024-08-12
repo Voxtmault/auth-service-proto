@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type APIServiceClient interface {
 	RegisterAuthorizedAPI(ctx context.Context, in *RegisterAuthorizedAPIRequest, opts ...grpc.CallOption) (*RegisterAuthorizedAPIResponse, error)
 	RollingAPIKey(ctx context.Context, in *RollingAPIKeyRequest, opts ...grpc.CallOption) (*RollingAPIKeyResponse, error)
-	DisableAPI(ctx context.Context, in *DisableAPIRequest, opts ...grpc.CallOption) (*GenericResponse, error)
+	DisableAPI(ctx context.Context, in *DisableAPIRequest, opts ...grpc.CallOption) (*APIServiceGenericResponse, error)
 	GetRegisteredAPI(ctx context.Context, in *GetRegisteredAPIRequest, opts ...grpc.CallOption) (*GetRegisteredAPIResponse, error)
 }
 
@@ -54,8 +54,8 @@ func (c *aPIServiceClient) RollingAPIKey(ctx context.Context, in *RollingAPIKeyR
 	return out, nil
 }
 
-func (c *aPIServiceClient) DisableAPI(ctx context.Context, in *DisableAPIRequest, opts ...grpc.CallOption) (*GenericResponse, error) {
-	out := new(GenericResponse)
+func (c *aPIServiceClient) DisableAPI(ctx context.Context, in *DisableAPIRequest, opts ...grpc.CallOption) (*APIServiceGenericResponse, error) {
+	out := new(APIServiceGenericResponse)
 	err := c.cc.Invoke(ctx, "/auth.APIService/DisableAPI", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -78,7 +78,7 @@ func (c *aPIServiceClient) GetRegisteredAPI(ctx context.Context, in *GetRegister
 type APIServiceServer interface {
 	RegisterAuthorizedAPI(context.Context, *RegisterAuthorizedAPIRequest) (*RegisterAuthorizedAPIResponse, error)
 	RollingAPIKey(context.Context, *RollingAPIKeyRequest) (*RollingAPIKeyResponse, error)
-	DisableAPI(context.Context, *DisableAPIRequest) (*GenericResponse, error)
+	DisableAPI(context.Context, *DisableAPIRequest) (*APIServiceGenericResponse, error)
 	GetRegisteredAPI(context.Context, *GetRegisteredAPIRequest) (*GetRegisteredAPIResponse, error)
 	mustEmbedUnimplementedAPIServiceServer()
 }
@@ -93,7 +93,7 @@ func (UnimplementedAPIServiceServer) RegisterAuthorizedAPI(context.Context, *Reg
 func (UnimplementedAPIServiceServer) RollingAPIKey(context.Context, *RollingAPIKeyRequest) (*RollingAPIKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RollingAPIKey not implemented")
 }
-func (UnimplementedAPIServiceServer) DisableAPI(context.Context, *DisableAPIRequest) (*GenericResponse, error) {
+func (UnimplementedAPIServiceServer) DisableAPI(context.Context, *DisableAPIRequest) (*APIServiceGenericResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DisableAPI not implemented")
 }
 func (UnimplementedAPIServiceServer) GetRegisteredAPI(context.Context, *GetRegisteredAPIRequest) (*GetRegisteredAPIResponse, error) {

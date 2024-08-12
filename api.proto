@@ -7,11 +7,11 @@ package auth;
 service APIService {
     rpc RegisterAuthorizedAPI(RegisterAuthorizedAPIRequest) returns (RegisterAuthorizedAPIResponse) {}
     rpc RollingAPIKey(RollingAPIKeyRequest) returns (RollingAPIKeyResponse) {}
-    rpc DisableAPI(DisableAPIRequest) returns (GenericResponse){}
+    rpc DisableAPI(DisableAPIRequest) returns (APIServiceGenericResponse){}
     rpc GetRegisteredAPI(GetRegisteredAPIRequest) returns (GetRegisteredAPIResponse){}
 }
 
-message GenericResponse {
+message APIServiceGenericResponse {
   uint32 response = 1;
   string message = 2;
 }
