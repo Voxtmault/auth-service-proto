@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+option go_package = "./api-service";
+
+package auth;
+
+service APIService {
+    rpc RegisterAuthorizedAPI(RegisterAuthorizedAPIRequest) returns (RegisterAuthorizedAPIResponse) {}
+    rpc RollingAPIKey(RollingAPIKeyRequest) returns (RollingAPIKeyResponse) {}
+    rpc DisableAPI(DisableAPIRequest) returns (GenericResponse){}
+    rpc GetRegisteredAPI(GetRegisteredAPIRequest) returns (GetRegisteredAPIResponse){}
+}
+
+message GenericResponse {
+  uint32 response = 1;
+  string message = 2;
+}
+
+// API Sub-Services
+message API {
+  uint32 apiId = 1; 
+  string apiName = 2;
+  string createdAt = 3;
+}
+
+message RegisterAuthorizedAPIRequest {
+  string apiName = 1;
+}
+message RegisterAuthorizedAPIResponse {
+  uint32 response = 1;
+  string message = 2;
+  string apiToken = 3; // Base64 Encoded (Use as is)
+}
+
+message RollingAPIKeyRequest {
+  string apiToken = 1; // Base64 Encoded
+}
+message RollingAPIKeyResponse {
+  uint32 response = 1;
+  string message = 2;
+  string apiToken = 3; // Base64 Encoded (Use as is)
+}
+
+message DisableAPIRequest {
+  string apiKey = 1;
+  uint32 apiId = 2;
+}
+// DisableAPIRequest uses GenericResponse
+
+message GetRegisteredAPIRequest {
+  string token = 1;
+}
+message GetRegisteredAPIResponse {
+  uint32 response = 1;
+  repeated API api = 2;
+}
